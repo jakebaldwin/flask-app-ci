@@ -7,11 +7,13 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: sls dynamodb start
-      - run: sls wsgi serve
+      - run: serverless dynamodb start
+      - run: serverless wsgi serve
   newman-collection-run:
     executor: newman/postman-newman-docker
     steps:
+      - requires:
+          - start-environment
       - checkout
       - newman/newman-run:
           collection: ./SimpleTests.json
