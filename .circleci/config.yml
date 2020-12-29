@@ -9,7 +9,6 @@ jobs:
             curl -o- -L https://slss.io/install | bash
                       echo "export PATH=$HOME/.serverless/bin:$PATH" >> "$BASH_ENV"
                       source "$BASH_ENV"
-            serverless dynamodb install
             serverless dynamodb start
             serverless wsgi serve
           name: deploy
