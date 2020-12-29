@@ -1,4 +1,9 @@
 jobs:
+  start-environment:
+    steps:
+      - checkout
+      - run: sls dynamodb start
+      - run: sls wsgi serve
   newman-collection-run:
     executor: newman/postman-newman-docker
     steps:
@@ -12,4 +17,5 @@ workflows:
   version: 2
   workflow:
     jobs:
+      - start-environment
       - newman-collection-run
