@@ -10,10 +10,10 @@ jobs:
       - run: serverless dynamodb start
       - run: serverless wsgi serve
   newman-collection-run:
+    requires:
+      - start-environment
     executor: newman/postman-newman-docker
     steps:
-      - requires:
-          - start-environment
       - checkout
       - newman/newman-run:
           collection: ./SimpleTests.json
