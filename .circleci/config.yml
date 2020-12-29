@@ -1,15 +1,18 @@
 jobs:
-  start-environment:
+  deploy:
     parallelism: 1
-    docker:
-      - image: alpine:3.7
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD
+    executor: serverless/default
     steps:
       - checkout
-      - run: serverless dynamodb start
-      - run: serverless wsgi serve
+      - aws-cli/setup
+      - serverless/setup:
+          app-name: serverless-framework-orb
+          org-name: circleci
+      - run:
+          command: >
+            serverless dynamodb start
+            serverless wsgi serve
+          name: deploy
   newman-collection-run:
     parallelism: 1
     executor: newman/postman-newman-docker
@@ -19,10 +22,12 @@ jobs:
           collection: ./SimpleTests.json
 orbs:
   newman: postman/newman@0.0.2
+  aws-cli: circleci/aws-cli@x.y
+  serverless: circleci/serverless-framework@x.y
 version: 2.1
 workflows:
   version: 2
   workflow:
     jobs:
-      - start-environment
+      - deploy
       - newman-collection-run
