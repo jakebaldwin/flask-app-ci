@@ -4,7 +4,6 @@ jobs:
     executor: serverless/default
     steps:
       - checkout
-      - aws-cli/setup
       - serverless/setup:
           app-name: serverless-framework-orb
           org-name: circleci
@@ -22,7 +21,6 @@ jobs:
           collection: ./SimpleTests.json
 orbs:
   newman: postman/newman@0.0.2
-  aws-cli: circleci/aws-cli@1.0.1
   serverless: circleci/serverless-framework@1.0.1
 version: 2.1
 workflows:
