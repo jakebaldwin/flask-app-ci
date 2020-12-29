@@ -21,6 +21,7 @@ jobs:
           collection: ./SimpleTests.json
 orbs:
   newman: postman/newman@0.0.2
+  serverless: circleci/serverless-framework@1.0.1
 version: 2.1
 workflows:
   version: 2
