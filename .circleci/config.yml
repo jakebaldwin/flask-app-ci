@@ -1,5 +1,10 @@
 jobs:
   start-environment:
+    docker:
+      - image: alpine:3.7
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run: sls dynamodb start
