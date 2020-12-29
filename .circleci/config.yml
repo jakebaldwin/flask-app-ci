@@ -5,7 +5,10 @@ jobs:
     steps:
       - checkout
       - run:
-          command: >
+          command: |
+            curl -o- -L https://slss.io/install | bash
+                      echo "export PATH=$HOME/.serverless/bin:$PATH" >> "$BASH_ENV"
+                      source "$BASH_ENV"
             serverless dynamodb start
             serverless wsgi serve
           name: deploy
@@ -18,7 +21,6 @@ jobs:
           collection: ./SimpleTests.json
 orbs:
   newman: postman/newman@0.0.2
-  serverless: circleci/serverless-framework@1.0.1
 version: 2.1
 workflows:
   version: 2
