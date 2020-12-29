@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "41f74c90-b2f7-4386-8de0-9ef4128c2a48",
+		"name": "Simple App Test Suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Interaction",
+			"item": [
+				{
+					"name": "Creating User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "56760a44-cb0f-4411-b0d2-2a296ccfca36",
+								"exec": [
+									"uuid = require(\"uuid\");",
+									"pm.globals.set(\"userId\", uuid.v4());",
+									"pm.globals.set(\"name\", uuid.v4());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "cfa3b5c1-62b3-40bc-815b-1ae868ad6666",
+								"exec": [
+									"var realID = pm.globals.get(\"userId\");",
+									"var realName = pm.globals.get(\"name\");",
+									"",
+									"",
+									"pm.test(\"Posted ID Properly\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.userId).to.eql(realID);",
+									"});",
+									"",
+									"pm.test(\"Posted Name Properly\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(realName);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\": \"{{userId}}\", \"name\": \"{{name}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Getting User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5124266e-23e2-4345-aeab-9b90113dfa78",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/users/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "51fda476-7a3f-456b-b632-60c86dcb9109",
+								"exec": [
+									"uuid = require(\"uuid\");",
+									"pm.globals.set(\"name\", uuid.v4());"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "56e70f36-a706-40dc-b66c-87c499a4b48b",
+								"exec": [
+									"var realID = pm.globals.get(\"userId\");",
+									"var realName = pm.globals.get(\"name\");",
+									"",
+									"",
+									"pm.test(\"Posted ID Properly\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.userId).to.eql(realID);",
+									"});",
+									"",
+									"pm.test(\"Posted Name Properly\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(realName);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"userId\": \"{{userId}}\", \"name\": \"{{name}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ede89a43-0ea0-48ab-a24e-41c0f7e0eacc",
+								"exec": [
+									"var realID = pm.globals.get(\"userId\");",
+									"var url = \"http://localhost:5000/users/\" + realID ",
+									"pm.sendRequest(url, function (err, response) {",
+									"    pm.expect(response.json().error).to.eql('User does not exist')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\": \"{{userId}}\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "26d252bd-ceb8-4eff-a159-01127f22b0b2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "83e84876-e751-402c-9f26-d6222637548b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bd36cfde-c520-4d72-82c5-9c0e6aed4e6d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cbd03fd2-b085-4ebc-a93c-6000eacbe6ff",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Successful request\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
