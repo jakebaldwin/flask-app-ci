@@ -1,5 +1,6 @@
 jobs:
   start-environment:
+    -parallelism: 1
     docker:
       - image: alpine:3.7
         auth:
@@ -10,8 +11,7 @@ jobs:
       - run: serverless dynamodb start
       - run: serverless wsgi serve
   newman-collection-run:
-    requires:
-      - start-environment
+    -parallelism: 1
     executor: newman/postman-newman-docker
     steps:
       - checkout
