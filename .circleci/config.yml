@@ -9,8 +9,6 @@ jobs:
             curl -o- -L https://slss.io/install | bash
                       echo "export PATH=$HOME/.serverless/bin:$PATH" >> "$BASH_ENV"
                       source "$BASH_ENV"
-            npm uninstall serverless-dynamodb-local
-            serverless dynamodb remove
             npm install serverless-dynamodb-local@0.2.30
             serverless dynamodb install
             serverless dynamodb start
