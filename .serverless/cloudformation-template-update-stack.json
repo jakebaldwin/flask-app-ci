@@ -2,6 +2,60 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "The AWS CloudFormation template for this Serverless application",
   "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
     "AppLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -108,8 +162,10 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "S3Bucket": "jake-test-app-dev-serverlessdeploymentbucket-74nlhtjy3t49",
-          "S3Key": "serverless/jake-test-app/dev/1609350917006-2020-12-30T17:55:17.006Z/app.zip"
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/jake-test-app/dev/1609357289445-2020-12-30T19:41:29.445Z/app.zip"
         },
         "FunctionName": "jake-test-app-dev-app",
         "Handler": "wsgi_handler.handler",
@@ -132,14 +188,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionwDSVuYIQ91vnYc1ufSC6RwoWmoOkhzdGSKdHAGPNSpg": {
+    "AppLambdaVersionOcklr61yhl7DRbLZv30Ou5iw1Hm4jtoTQatMnnDBoAs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "RXdoX4wy4EsIm0XKUn56LYYitdWM+Ca/31+bL6ewtcs="
+        "CodeSha256": "WIZ1Q4nIRUX7jysBKwNOJOg38LmAC8QEyvffiO6H8t8="
       }
     },
     "ApiGatewayRestApi": {
@@ -258,7 +314,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1609350901156": {
+    "ApiGatewayDeployment1609357267007": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -333,12 +389,14 @@
   },
   "Outputs": {
     "ServerlessDeploymentBucketName": {
-      "Value": "jake-test-app-dev-serverlessdeploymentbucket-74nlhtjy3t49"
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      }
     },
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionwDSVuYIQ91vnYc1ufSC6RwoWmoOkhzdGSKdHAGPNSpg"
+        "Ref": "AppLambdaVersionOcklr61yhl7DRbLZv30Ou5iw1Hm4jtoTQatMnnDBoAs"
       }
     },
     "ServiceEndpoint": {
