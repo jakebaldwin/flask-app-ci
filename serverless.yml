@@ -1,14 +1,15 @@
-service: jake-test-app-2
+service: jake-test-app
 
 plugins:
+  - serverless-deployment-bucket
   - serverless-python-requirements
   - serverless-wsgi
   - serverless-dynamodb-local
 
 custom:
-  tableName: 'users-table-${self:provider.stage}'
+  tableName: 'jake-new-table-${self:provider.stage}'
   wsgi:
-    app: jake-flask-app-2.app
+    app: jake-flask-app.app
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
@@ -25,6 +26,9 @@ package:
     - venv/**
 
 provider:
+  deploymentBucket:
+    name: jake-test-app-dev-serverlessdeploymentbucket-74nlhtjy3t49
+    serverSideEncryption: AES256
   name: aws
   runtime: python3.7
   stage: dev
