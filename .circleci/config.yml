@@ -2,6 +2,7 @@ jobs:
   deploy:
     parallelism: 1
     executor: serverless/default
+    python-version: 3.8
     steps:
       - checkout
       - aws-cli/setup
