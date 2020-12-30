@@ -1,4 +1,4 @@
-service: serverless-flask
+service: jake-test-app-2
 
 plugins:
   - serverless-python-requirements
@@ -18,9 +18,15 @@ custom:
     start:
       migrate: true
 
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - venv/**
+
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.7
   stage: dev
   region: us-east-2
   iamRoleStatements:
