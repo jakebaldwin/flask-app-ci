@@ -1,10 +1,7 @@
 jobs:
   deploy:
     parallelism: 1
-    docker:
-      - image: 'cimg/python:3.8'
-    parameters:
-      python-version: 3.8
+    executor: serverless/default
     steps:
       - checkout
       - aws-cli/setup
