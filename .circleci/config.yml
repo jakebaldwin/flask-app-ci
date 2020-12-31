@@ -9,7 +9,7 @@ jobs:
       - run:
           command: |-
             echo "source /Users/jakeballdwin/Desktop/flask-ci/venv/bin/activate" >> $BASH_ENV
-          sls deploy
+      - run: sls deploy
   newman-collection-run:
     parallelism: 1
     executor: newman/postman-newman-docker
