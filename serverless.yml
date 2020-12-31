@@ -10,7 +10,7 @@ custom:
     app: jake-flask-app.app
     packRequirements: false
   pythonRequirements:
-    dockerizePip: non-linux
+    pythonBin: /Users/jakeballdwin/.pyenv/versions/3.8.5/bin/python
   dynamodb:
     stages:
       - dev
