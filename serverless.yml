@@ -2,8 +2,6 @@ service: jake-test-app
 
 plugins:
   - serverless-python-requirements
-  - serverless-wsgi
-  - serverless-dynamodb-local
 custom:
   tableName: 'jake-new-table-${self:provider.stage}'
   wsgi:
