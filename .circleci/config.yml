@@ -6,10 +6,9 @@ jobs:
       - checkout
       - aws-cli/setup
       - serverless/setup
-      - run: |
-          virtualenv venv --python=python3 &&
-          source venv/bin/activate &&
-          pip install -r requirements.txt &&
+      - run:
+          command: |-
+            echo "source /Users/jakeballdwin/Desktop/flask-ci/venv/bin/activate" >> $BASH_ENV
           sls deploy
   newman-collection-run:
     parallelism: 1
