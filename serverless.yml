@@ -10,7 +10,7 @@ custom:
     app: jake-flask-app.app
     packRequirements: false
   pythonRequirements:
-    pythonBin: /Users/jakeballdwin/.pyenv/versions/3.8.5/bin/python
+    pythonBin: /Users/jakeballdwin/.pyenv/versions/3.8.5
   dynamodb:
     stages:
       - dev
