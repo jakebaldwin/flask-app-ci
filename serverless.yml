@@ -20,7 +20,6 @@ custom:
 package:
   individually: true
   exclude:
-    - node_modules/**
     - venv/**
 
 provider:
