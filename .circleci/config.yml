@@ -1,7 +1,7 @@
 jobs:
   deploy:
     parallelism: 1
-    executor: serverless/defaulnpm install --save-dev serverless-wsgi serverless-python-requirements
+    executor: serverless/default
     steps:
       - checkout
       - aws-cli/setup
