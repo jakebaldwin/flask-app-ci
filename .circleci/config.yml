@@ -6,7 +6,11 @@ jobs:
       - checkout
       - aws-cli/setup
       - serverless/setup
-      - run: sls deploy
+      - run: |
+          virtualenv venv --python=python3
+          source venv/bin/activate
+          pip install -r requirements.txt
+          sls deploy
   newman-collection-run:
     parallelism: 1
     executor: newman/postman-newman-docker
