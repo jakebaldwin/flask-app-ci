@@ -6,7 +6,11 @@ jobs:
       - checkout
       - aws-cli/setup
       - serverless/setup
-      - run: sls deploy
+      - run:
+          command: |
+            npm install serverless-python-requirements
+            sls deploy
+
   newman-collection-run:
     parallelism: 1
     executor: newman/postman-newman-docker
