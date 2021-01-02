@@ -7,7 +7,7 @@ plugins:
 custom:
   tableName: 'jake-new-table-${self:provider.stage}'
   wsgi:
-    app: jake-flask-app.app
+    app: jake-test-app.app
     packRequirements: false
   pythonRequirements:
     pythonBin:
@@ -24,7 +24,7 @@ package:
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.7
   stage: dev
   region: us-east-2
   iamRoleStatements:

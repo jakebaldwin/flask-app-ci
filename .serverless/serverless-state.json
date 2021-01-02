@@ -6,7 +6,7 @@
     },
     "provider": {
       "name": "aws",
-      "runtime": "python3.8",
+      "runtime": "python3.7",
       "stage": "dev",
       "region": "us-east-2",
       "iamRoleStatements": [
@@ -186,7 +186,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/jake-test-app/dev/1609608787989-2021-01-02T17:33:07.989Z/app.zip"
+                "S3Key": "serverless/jake-test-app/dev/1609610651408-2021-01-02T18:04:11.408Z/app.zip"
               },
               "FunctionName": "jake-test-app-dev-app",
               "Handler": "wsgi_handler.handler",
@@ -197,7 +197,7 @@
                   "Arn"
                 ]
               },
-              "Runtime": "python3.8",
+              "Runtime": "python3.7",
               "Timeout": 6,
               "Environment": {
                 "Variables": {
@@ -209,14 +209,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionMSeoB5LgAakA61weHOh5FDMewEY1HzxAwGJ850comU": {
+          "AppLambdaVersionOZEu3zOQMLatRioBnZvInF8zEzCwDo8JD3YjbWKdw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "+ETKXyOzxXggCN6/PekvdNsuztvUGsfO1ohB7pREzNk="
+              "CodeSha256": "8Frk7xvbxLplF2deqDiq47NU/LzWjj0+uqR6wktCGgo="
             }
           },
           "ApiGatewayRestApi": {
@@ -335,7 +335,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1609608762207": {
+          "ApiGatewayDeployment1609610628798": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -417,7 +417,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionMSeoB5LgAakA61weHOh5FDMewEY1HzxAwGJ850comU"
+              "Ref": "AppLambdaVersionOZEu3zOQMLatRioBnZvInF8zEzCwDo8JD3YjbWKdw"
             }
           },
           "ServiceEndpoint": {
@@ -517,7 +517,7 @@
     "custom": {
       "tableName": "jake-new-table-dev",
       "wsgi": {
-        "app": "jake-flask-app.app",
+        "app": "jake-test-app.app",
         "packRequirements": false
       },
       "pythonRequirements": {
@@ -556,9 +556,9 @@
         },
         "memory": 1024,
         "timeout": 6,
-        "runtime": "python3.8",
+        "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionMSeoB5LgAakA61weHOh5FDMewEY1HzxAwGJ850comU"
+        "versionLogicalId": "AppLambdaVersionOZEu3zOQMLatRioBnZvInF8zEzCwDo8JD3YjbWKdw"
       }
     },
     "resources": {
@@ -611,7 +611,7 @@
           "serverless_wsgi.py",
           ".serverless-wsgi"
         ],
-        "artifactDirectoryName": "serverless/jake-test-app/dev/1609608787989-2021-01-02T17:33:07.989Z"
+        "artifactDirectoryName": "serverless/jake-test-app/dev/1609610651408-2021-01-02T18:04:11.408Z"
       },
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
@@ -627,7 +627,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/jake-test-app/dev/1609608787989-2021-01-02T17:33:07.989Z",
+    "artifactDirectoryName": "serverless/jake-test-app/dev/1609610651408-2021-01-02T18:04:11.408Z",
     "artifact": ""
   }
 }
