@@ -1,11 +1,26 @@
 {
   "name": "jake-test-app",
-  "description": "",
   "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-python-requirements": "^5.1.0",
     "serverless-wsgi": "^1.7.6"
-  }
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jake-p-b/flask-app-ci.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jake-p-b/flask-app-ci/issues"
+  },
+  "homepage": "https://github.com/jake-p-b/flask-app-ci#readme",
+  "description": ""
 }
