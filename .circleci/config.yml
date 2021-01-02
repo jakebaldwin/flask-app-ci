@@ -8,7 +8,6 @@ jobs:
       - serverless/setup
       - run:
           command: |
-            npm install serverless-python-requirements
             sls deploy
 
   newman-collection-run:
