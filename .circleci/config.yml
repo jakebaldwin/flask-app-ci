@@ -6,10 +6,7 @@ jobs:
       - checkout
       - aws-cli/setup
       - serverless/setup
-      - run:
-          command: |-
-            echo "source /Users/jakeballdwin/Desktop/flask-ci/venv/bin/activate" >> $BASH_ENV
-      - run: sls deploy
+      - run: sls deploy -v
   newman-collection-run:
     parallelism: 1
     executor: newman/postman-newman-docker
